@@ -97,7 +97,7 @@ class FD2D(SpatialDiscretization):  # TE mode
 
         if self.tfsf == True:
 
-            self.updateIncidentFieldE() #check +-1
+            self.updateIncidentFieldE() 
             rhsEy[self.XL_TF_limit,:]  +=  (1.0/self.dxH[0]) * self.Hinc[self.XL_TF_limit-1,:] #outside left face (signos cambiados por sullivan)
             rhsEy[self.XU_TF_limit,:]  -=  (1.0/self.dxH[0]) * self.Hinc[self.XU_TF_limit,:] #outside right face
 
@@ -181,10 +181,10 @@ class FD2D(SpatialDiscretization):  # TE mode
         if self.tfsf == True:  
             self.updateIncidentFieldH()
 
-            rhsH[self.XL_TF_limit - 1, :] +=  (1.0/self.dx[0]) * self.Einc_y[self.XL_TF_limit, :] #left face  (signos cambiados por sullivan)
-            rhsH[self.XU_TF_limit, :] -=  (1.0/self.dx[0]) * self.Einc_y[self.XU_TF_limit, :] #right face         
-            rhsH[ :,self.YL_TF_limit - 1] -=  (1.0/self.dx[0]) * self.Einc_x[:,self.YL_TF_limit] #front face
-            rhsH[ :,self.YU_TF_limit] +=  (1.0/self.dx[0]) * self.Einc_x[:,self.YU_TF_limit] #back face
+            rhsH[self.XL_TF_limit - 1, :] +=  (1.0/self.dx[0]) * self.Einc_y[self.XL_TF_limit, :] #left face  
+            rhsH[self.XU_TF_limit, :]     -=  (1.0/self.dx[0]) * self.Einc_y[self.XU_TF_limit, :] #right face         
+            rhsH[: ,self.YL_TF_limit - 1] -=  (1.0/self.dx[0]) * self.Einc_x[:,self.YL_TF_limit] #front face
+            rhsH[: ,self.YU_TF_limit]     +=  (1.0/self.dx[0]) * self.Einc_x[:,self.YU_TF_limit] #back face
 
         return rhsH
 
